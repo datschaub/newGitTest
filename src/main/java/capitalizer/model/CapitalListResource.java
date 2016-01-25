@@ -19,30 +19,30 @@ import javax.ws.rs.core.Response;
 
 
 // CRUD API at /api/todolist
-@Path("/todolist")
+@Path("/capitallist")
 /**
  * RESTful CRUD service of todo list table.
  *
  */
-public class TODOListResource {
+public class CapitalListResource {
 
 	private UserTransaction utx;
 	private EntityManager em;
 
-	public TODOListResource() {
+	public CapitalListResource() {
 		utx = getUserTransaction();
 		em = getEm();
 	}
 
 	@POST
 	public Response create(@FormParam("name") String name) {
-		TODO todo = new TODO();
-		todo.setName(name);
+		Capital todo = new Capital();
+		capital.setName(name);
 		try {
 			utx.begin();
-			em.persist(todo);
+			em.persist(capital);
 			utx.commit();
-			return Response.ok(todo.toString()).build();
+			return Response.ok(capital.toString()).build();
 		} catch (Exception e) {
 			e.printStackTrace();			
 			return Response.status(javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR).build();
@@ -61,9 +61,9 @@ public class TODOListResource {
 	public Response delete(@QueryParam("id") long id) {
 		try {
 			utx.begin();
-			TODO todo = em.find(TODO.class, id);
-			if (todo != null) {
-				em.remove(todo);
+			Capital captial = em.find(Capital.class, id);
+			if (capital != null) {
+				em.remove(capital);
 				utx.commit();
 				return Response.ok().build();
 			} else {
@@ -88,10 +88,10 @@ public class TODOListResource {
 			@FormParam("name") String name) {
 		try {
 			utx.begin();
-			TODO todo = em.find(TODO.class, id);
-			if (todo != null) {
-				todo.setName(name);// TODO check if null
-				em.merge(todo);
+			Capital capital = em.find(Capital.class, id);
+			if (capital != null) {
+				capital.setName(name);// TODO check if null
+				em.merge(capital);
 				utx.commit();
 				return Response.ok().build();
 			} else {
@@ -115,15 +115,15 @@ public class TODOListResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(@QueryParam("id") long id) {
 		if (id == 0) {
-			List<TODO> list = em.createQuery("SELECT t FROM TODO t", TODO.class).getResultList();
+			List<Capital> list = em.createQuery("SELECT t FROM TODO t", Capital.class).getResultList();
 			//TODO use JSON util like Gson to render objects and use REST Response Writer
 			String json = "{\"id\":\"all\", \"body\":" + list.toString() + "}";
 			return Response.ok(json).build();
 		}
-		TODO todo = null;
+		Capital capital = null;
 		try {
 			utx.begin();
-			todo = em.find(TODO.class, id);
+			capital = em.find(TODO.class, id);
 			utx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -137,19 +137,19 @@ public class TODOListResource {
 				e.printStackTrace();
 			}
 		}
-		if (todo != null)
-			return Response.ok(todo.toString()).build();
+		if (capital != null)
+			return Response.ok(capital.toString()).build();
 		else
 			return Response.status(javax.ws.rs.core.Response.Status.NOT_FOUND).build();
 	}
 	
 	public void populateDB() {
-		List<TODO> list = em.createQuery("SELECT t FROM TODO t", TODO.class).getResultList();
-		if (list.size() == 0) {
+		List<Capital> list = em.createQuery("SELECT c FROM CAPITAL c", Capital.class).getResultList();
+		/*if (list.size() == 0) {
 			create("sample entry #1");
 			create("sample entry #2");
 			create("sample entry #3");
-		}
+		}*/
 	}
 	
 	private UserTransaction getUserTransaction() {
