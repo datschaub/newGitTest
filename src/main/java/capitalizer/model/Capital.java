@@ -17,20 +17,8 @@ public class Capital {
 	@Id //primary key
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	long id;
+	private long id;
 	
-	@Basic
-	@Column(name = "CAPITAL")
-	String capital;
-
-	public String getCapital() {
-		return capital;
-	}
-
-	public void setCapital(String capital) {
-		this.capital = capital;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -40,8 +28,20 @@ public class Capital {
 	}
 	
 	@Basic
+	@Column(name = "CAPITAL")
+	private String capital;
+
+	public String getCapital() {
+		return capital;
+	}
+
+	public void setCapital(String capital) {
+		this.capital = capital;
+	}
+	
+	@Basic
 	@Column(name = "COUNTRY")
-	String country;
+	private String country;
 	
 	public String getCountry() {
 		return country;
@@ -53,7 +53,7 @@ public class Capital {
 	
 	@Basic
 	@Column(name = "CITY_POPULATION")
-	int cityPopulation;
+	private int cityPopulation;
 	
 	public int getCityPopulation() {
 		return cityPopulation;
@@ -65,7 +65,7 @@ public class Capital {
 	
 	@Basic
 	@Column(name = "COUNTRY_POPULATION")
-	int countryPopulation;
+	private int countryPopulation;
 	
 	public int getCountryPopulation() {
 		return countryPopulation;
@@ -77,7 +77,7 @@ public class Capital {
 	
 	@Basic
 	@Column(name = "FUN_FACT")
-	String funFact;
+	private String funFact;
 	
 	public String getFunFact() {
 		return funFact;
