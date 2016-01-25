@@ -36,7 +36,7 @@ public class TODOListResource {
 
 	@POST
 	public Response create(@FormParam("name") String name) {
-		TODO todo = new TODO();
+		Capital todo = new Capital();
 		todo.setName(name);
 		try {
 			utx.begin();
@@ -61,7 +61,7 @@ public class TODOListResource {
 	public Response delete(@QueryParam("id") long id) {
 		try {
 			utx.begin();
-			TODO todo = em.find(TODO.class, id);
+			Capital todo = em.find(Capital.class, id);
 			if (todo != null) {
 				em.remove(todo);
 				utx.commit();
@@ -88,7 +88,7 @@ public class TODOListResource {
 			@FormParam("name") String name) {
 		try {
 			utx.begin();
-			TODO todo = em.find(TODO.class, id);
+			Capital todo = em.find(Capital.class, id);
 			if (todo != null) {
 				todo.setName(name);// TODO check if null
 				em.merge(todo);
@@ -115,15 +115,15 @@ public class TODOListResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(@QueryParam("id") long id) {
 		if (id == 0) {
-			List<TODO> list = em.createQuery("SELECT t FROM TODO t", TODO.class).getResultList();
+			List<Capital> list = em.createQuery("SELECT t FROM TODO t", Capital.class).getResultList();
 			//TODO use JSON util like Gson to render objects and use REST Response Writer
 			String json = "{\"id\":\"all\", \"body\":" + list.toString() + "}";
 			return Response.ok(json).build();
 		}
-		TODO todo = null;
+		Capital todo = null;
 		try {
 			utx.begin();
-			todo = em.find(TODO.class, id);
+			todo = em.find(Capital.class, id);
 			utx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -144,7 +144,7 @@ public class TODOListResource {
 	}
 	
 	public void populateDB() {
-		List<TODO> list = em.createQuery("SELECT t FROM TODO t", TODO.class).getResultList();
+		List<Capital> list = em.createQuery("SELECT t FROM TODO t", Capital.class).getResultList();
 		if (list.size() == 0) {
 			create("sample entry #1");
 			create("sample entry #2");
