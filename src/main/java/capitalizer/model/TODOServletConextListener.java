@@ -1,4 +1,4 @@
-package example.jpa;
+package capitalizer.model;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

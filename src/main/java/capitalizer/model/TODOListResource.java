@@ -1,4 +1,4 @@
-package example.jpa;
+package capitalizer.model;
 
 import java.util.List;
 

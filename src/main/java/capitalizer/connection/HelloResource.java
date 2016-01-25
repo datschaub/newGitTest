@@ -1,4 +1,4 @@
-package example.jpa;
+package capitalizer.connection;
 
 import java.io.IOException;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package example.servlet;
+package capitalaizer.servlet;
 
 import java.io.IOException;
 
