@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CAPITAL")
+@Table(name = "capital")
 /*
  * define O-R mapping of todolist table
  */
