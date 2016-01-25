@@ -26,6 +26,7 @@ public class HelloResource {
 		// String envApp = System.getenv("VCAP_APPLICATION");
 
 		// 'VCAP_SERVICES' contains all the credentials of services bound to this application.
+		
 		//String envServices = System.getenv("VCAP_SERVICES");
 		
 		String envServices = "{" +
@@ -46,13 +47,13 @@ public class HelloResource {
 				"				              }" +
 				"				            }" +
 				"				          ]" +
-				"				        }";
+				"				        }"; 
 
-        /*if (envServices == null) {
+        if (envServices == null) {
         	  return("VCAP_SERVICES not found");
         	  
-          }*/
-		
+          }
+		 	
         JSONObject obj =  (JSONObject) JSON.parse(envServices);
         
         String thekey = null;
