@@ -35,9 +35,9 @@ public class CapitalListResource {
 	}
 
 	@POST
-	public Response create(@FormParam("name") String name) {
-		Capital todo = new Capital();
-		capital.setName(name);
+	public Response create(@FormParam("name") String capitalName) {
+		Capital capital = new Capital();
+		capital.setCapital(capitalName);
 		try {
 			utx.begin();
 			em.persist(capital);
@@ -61,7 +61,7 @@ public class CapitalListResource {
 	public Response delete(@QueryParam("id") long id) {
 		try {
 			utx.begin();
-			Capital captial = em.find(Capital.class, id);
+			Capital capital = em.find(Capital.class, id);
 			if (capital != null) {
 				em.remove(capital);
 				utx.commit();
@@ -85,12 +85,12 @@ public class CapitalListResource {
 
 	@PUT
 	public Response update(@FormParam("id") long id,
-			@FormParam("name") String name) {
+			@FormParam("name") String capitalName) {
 		try {
 			utx.begin();
 			Capital capital = em.find(Capital.class, id);
 			if (capital != null) {
-				capital.setName(name);// TODO check if null
+				capital.setCapital(capitalName);// TODO check if null
 				em.merge(capital);
 				utx.commit();
 				return Response.ok().build();
@@ -123,7 +123,7 @@ public class CapitalListResource {
 		Capital capital = null;
 		try {
 			utx.begin();
-			capital = em.find(TODO.class, id);
+			capital = em.find(Capital.class, id);
 			utx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
