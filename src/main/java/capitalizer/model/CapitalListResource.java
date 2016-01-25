@@ -19,7 +19,7 @@ import javax.ws.rs.core.Response;
 
 
 // CRUD API at /api/todolist
-@Path("/capitallist")
+@Path("/CAPITAL")
 /**
  * RESTful CRUD service of todo list table.
  *
