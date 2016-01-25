@@ -26,12 +26,32 @@ public class HelloResource {
 		// String envApp = System.getenv("VCAP_APPLICATION");
 
 		// 'VCAP_SERVICES' contains all the credentials of services bound to this application.
-		String envServices = System.getenv("VCAP_SERVICES");
+		//String envServices = System.getenv("VCAP_SERVICES");
+		
+		String envServices = "{" +
+				"				  \"sqldb\": [" +
+				"				            {" +
+				"				              \"name\": \"moppster-sqldb\"," +
+				"				              \"label\": \"sqldb\"," +
+				"				              \"plan\": \"sqldb_free\"," +
+				"				              \"credentials\": {" +
+				"				                \"hostname\": \"75.126.155.153\"," +
+				"				                \"password\": \"j9Er8wXnU6ps\"," +
+				"				                \"port\": 50000," +
+				"				                \"host\": \"75.126.155.153\"," +
+				"				                \"jdbcurl\": \"jdbc:db2://75.126.155.153:50000/SQLDB\"," +
+				"				                \"uri\": \"db2://user13180:j9Er8wXnU6ps@75.126.155.153:50000/SQLDB\"," +
+				"				                \"db\": \"SQLDB\"," +
+				"				                \"username\": \"user13180\"" +
+				"				              }" +
+				"				            }" +
+				"				          ]" +
+				"				        }";
 
-        if (envServices == null) {
+        /*if (envServices == null) {
         	  return("VCAP_SERVICES not found");
         	  
-          }
+          }*/
 		
         JSONObject obj =  (JSONObject) JSON.parse(envServices);
         
